@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+
+  <title>Edit Group</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <style>
+    *{
+      font-family: Poppins;
+      font-size: 18px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      width: 100%;
+      height: 50px;
+      background-color: #666;
+      text-align: left;
+      color: white;
+      padding-bottom: 3px;
+      background-color:#FFFFFF;
+      color: black;
+      margin-bottom: 2px;
+      box-shadow: 0px 3px 0px 0px #dcdcdc;        }
+
+
+    li{
+      margin:10px;
+    }
+    nav {
+      text-decoration: none;
+      float: left;
+      width: 18%;
+      height: 300px;
+      background: white;
+      padding: 20px;
+    }
+
+    nav ul {
+      margin-left: 10px;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    article {
+      float: left;
+      padding: 20px;
+      width: 82%;
+      background: rgba(243, 243, 243, 0.99);
+      height: auto;
+    }
+
+
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+
+    footer {
+      background-color: #777;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      nav, article {
+        width: 100%;
+        height: auto;
+      }
+    }
+    a:hover {
+      color: #5BA525 ;
+      text-decoration: none;
+    }
+
+    a{
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+
+    }
+    p{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .carousel-indicators [data-bs-target]{
+      background-color: #5BA525;
+    }
+
+    .form-select{
+      background-size: 16px 14px;
+      padding-bottom: 0px;
+      padding-top: 5px;
+    }
+
+    .content-answer{
+      width: 550px;
+      height: 350px;
+      float: left;
+      margin: 0px 50px 30px 0px;
+      background: #FFFFFF;
+
+    }
+    ::placeholder {
+      color: #D2D2D2;
+    }
+
+    .content{
+      max-height: 30px;
+    }
+    .image_topic{
+      padding-bottom: 15px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<script>
+  var myModal = document.getElementById('myModal')
+  var myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+  })
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+      if(minutes ==5 && seconds==0)
+      {
+        display.style.color="red";
+      }
+      localStorage.setItem("tm",timer);
+      // alert(timer);
+      if (--timer < 0) {
+        timer = 0;
+        localStorage.setItem("tm",1800);
+      }
+    }, 1000);
+  }
+
+  // window.onload = function () {
+  //   var local = localStorage.getItem("tm");
+  //
+  //   if(local==null)
+  //   {
+  //     var fiveMinutes = 60*30,
+  //             display = document.querySelector('#time');
+  //     startTimer(fiveMinutes, display);
+  //   }
+  //   else{
+  //     var fiveMinutes = local,
+  //             display = document.querySelector('#time');
+  //     startTimer(fiveMinutes, display);
+  //   }
+  //
+  //
+  // };
+  function returnTime(){
+    localStorage.setItem("tm",1800);
+  }
+</script>
+<header>
+  <h3>NBS Company</h3>
+</header>
+
+
+<section>
+
+  <nav>
+    <ul>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+          <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+        </svg> &nbsp;&nbsp;
+          <a href="/"> <b>Manage Group </b> </a></li>
+      </ul>
+      <li th:each="item:${loadUser}"><a th:text="${item.getGroup_name()}" th:href="@{'groupDdetail?id='+${item.getGroup_id()}}"> &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+        <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+        <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      </svg></a>
+
+      </li>
+
+      </li>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+          <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+        </svg> &nbsp;&nbsp;
+          <a href=""> <b>My writing </b> </a></li>
+      </ul>
+
+      <li><a href="list">IELTS Class 1 &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+        <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+        <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      </svg></a>
+
+      </li>
+      <li><a href="list">TOEFL Class 2</a></li>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+          <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+          <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+        </svg> &nbsp;&nbsp;
+          <a href="" th:href="@{/edituser}">Settings</a></li>
+      </ul>
+
+    </ul>
+  </nav>
+
+
+  <article>
+    <table border="0" style="width: 100%;font-size: 24px;background-color: white">
+      <form th:action="@{/editedgroup}" method="post" th:object="${listdatagroup}">
+        <tr>
+          <td colspan="4" style="text-align: center;font-weight: bold;font-size: 36px" th:text="*{groupname}"></td>
+        </tr>
+        <tr >
+          <td colspan="4" style="font-weight: bold;font-size:28px"> <a style="margin-left: 60px">Basic infomation</a> </td>
+        </tr>
+        <tr style="height: 80px">
+          <td style="width: 20%"><a style="margin-left: 240px"> Class name</a></td>
+          <td style="width: 80%" colspan="3">
+            <input type="text" size="46px" id="groupname"  th:field="*{groupname}"><br>
+            <label id="errorgroupname" style="color: red;font-size: 16px"></label>
+          </td>
+        </tr>
+        <tr style="height: 80px">
+          <td style="width: 20%"><a style="margin-left: 240px"> Duration from</a></td>
+          <td style="width: 10%">
+            <div class="input-container">
+              <input id="effective-date" style="background-color: white"
+                     th:field="*{groupdatecreate}" type="date"
+                     name="effective-date" minlength="1" maxlength="64" placeholder="dd-MM-yyyy" autocomplete="nope" required="required"></input>
+              <span class="bar"></span>
+              <br>
+              <label id="errordate" style="color: red;font-size: 16px"></label>
+            </div>
+          </td>
+          <td style="width: 5%">
+            <a style="margin-left: 40px">to</a>
+          </td>
+          <td style="width: 65%">
+            <div class="input-container">
+              <input id="effective-date2" th:field="*{groupdateend}" type="date" name="effective-date" minlength="1" maxlength="64" placeholder="dd-MM-yyyy" autocomplete="nope" required="required"></input>
+              <span class="bar"></span>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 80px">
+          <td style="width: 20%"><a style="margin-left: 240px"> Passcode</a></td>
+          <td style="width: 80%" colspan="3">
+            <input type="text" size="46px" id="grouppass" th:field="*{grouppass}">
+            <br>
+            <label id="errorgrouppass" style="color: red;font-size: 16px"></label>
+            <input type="hidden" th:field="*{groupid}" th:value="*{groupid}">
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 20%"></td>
+          <td style="width: 80%" colspan="3">(*) Students use their email along with this code to login</td>
+        </tr>
+        <tr style="height: 80px">
+          <td style="width: 20%"><a style="margin-left: 240px"> Notes </a></td>
+          <td style="width: 80%" colspan="3" >
+            <input type="text" size="46px" id="groupnote" th:field="*{groupnote}">
+            <br>
+            <label id="errorgroupnote" style="color: red;font-size: 16px"></label>
+          </td>
+        </tr>
+        <tr><td colspan="4"><br></td> </tr>
+        <tr><td colspan="4"></td> </tr>
+        <tr>
+          <td colspan="4" style="font-weight: bold;font-size:28px"> <a style="margin-left: 60px">Student infomation</a> </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <table border="1" style="width:100%;margin-top: 20px;text-align: center">
+              <tr style="color: green;font-weight: bold;font-size: 30px">
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Target</td>
+                <td>Notes</td>
+              </tr>
+
+              <!--        <tr th:each="item : ${loadliststudent}" >-->
+              <!--        <tr th:each="currentuser, stat: ${loadlistdata.list}">-->
+              <!--          <td>-->
+              <!--            <input type="checkbox" style="width: 16px;height: 16px"th:value="${currentuser.getStudentid()}"></td>-->
+              <!--          <td style="text-align: left">-->
+              <!--            <img style="margin-left: 60px;width: 60px;height: 60px" src="dist/img/student.jpg" alt="User Avatar" >-->
+              <!--            <a th:text="${currentuser.getStudentname()}"> </a>-->
+              <!--          </td>-->
+              <!--          <td th:text="${currentuser.getEmail()}"></td>-->
+              <!--          <td th:text="${currentuser.getStudentphone()}"></td>-->
+              <!--          <td th:text="${currentuser.getStudenttarget()}"></td>-->
+              <!--          <td th:text="${currentuser.getNotes()}"></td>-->
+              <!--        </tr>-->
+              <tr th:each="currentClient,stat : *{studentDTOS}">
+                <td style="text-align: left">
+                  <img style="margin-left: 60px;width: 60px;height: 60px" src="https://static.vecteezy.com/system/resources/thumbnails/000/350/111/small/Education__28193_29.jpg" alt="User Avatar" >
+                  <a style="margin-left: 20px" th:text="${currentClient.getStudentname()}"> </a>
+                </td>
+                <td style="text-align: left" >
+                  <a style="margin-left: 180px" th:text="${currentClient.getEmail()}"> </a>
+                </td>
+                <td style="text-align: left" >
+                  <a style="margin-left: 100px" th:text="${currentClient.getStudentphone()}"> </a>
+                </td>
+                <td th:text="${currentClient.getStudenttarget()}"></td>
+                <td style="text-align: left" >
+                  <a style="margin-left: 100px" th:text="${currentClient.getNotes()}"> </a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" style="text-align: right; height: 80px">
+                  <script type="text/javascript">
+                    function showmess()
+                    {
+                      alert("You have edit succesfully");
+                    }
+                    function showmess2()
+                    {
+                      alert("You have delete this group succesfully");
+                    }
+                  </script>
+                  <!--                                    style="border:none;margin-right: 30px;margin-top:18px;width: 100px;height:40px;background-color:  rgb(91,165,37)"-->
+                  <!--                                    style="text-align:center;margin-top:10px;margin-right:20px;height:40px;color:black;width: 160px;background-color:  rgb(91,165,37)"-->
+                  <!--                                    style="text-align:center;margin-right: 20px;height:40px;color:black;width: 100px;background-color:  rgb(91,165,37)-->
+                  <!--            <input type="button" onclick='selects()' value="Select All"/>-->
+                  <!--            <input type="button" onclick='deSelect()' value="Deselect All"/>-->
+                </td>
+              </tr>
+              <!--        <input type="button" onclick="selectall()" >select</input>-->
+
+            </table>
+            <div class="all">
+              <div class="part1">
+                <a type="submit" onclick="showmess2()" style="width: 160px;height: 40px;text-align: center;background-color:  rgb(91,165,37);color: white"  th:href="@{'deletegroup?id='+ ${listdatagroup.getGroupid()}}"
+                >Delete Group</a>
+              </div>
+              <div class="part2">
+                <a type="submit"  href="/" style="width: 100px;height: 40px;text-align: center;background-color:  rgb(91,165,37);color: white">Cancel</a>
+              </div>
+              <div class="part3">
+                <input type="submit" onclick="return checkdata()" style="border:none;width: 100px;height: 40px;text-align: center;background-color:  rgb(91,165,37);color: white" value="Save"></input>
+              </div>
+            </div>
+      </form>
+      <script>
+        window.onload = function (){
+          // let errordate = document.getElementById('errordate');
+          // let errorname = document.getElementById('errorgroupname');
+          // let username = document.getElementById('groupname');
+          // // let errorr = document.getElementById('newerror');
+          // let dulieu = localStorage.getItem("id1");
+          // if(username.value!='') { //
+          //   if (dulieu == "1") {
+          //     // error.innerText="";
+          //     errordate.innerText="";
+          //     errorname.innerText="";
+          //     alert("co");
+          //     localStorage.setItem("id1", "0");
+          //   } else {
+          //     alert("ko");
+          //     // document.getElementById('myModal').style.display = 'block'
+          //     // error.innerText="Username or Password not correct";
+          //     // error.style.color="red";
+          //   }
+          // }
+        }
+        function checkdata(){
+          var groupname = document.getElementById('groupname');
+          var errorgroupname = document.getElementById('errorgroupname');
+          if(groupname.value=='')
+          {
+            errorgroupname.style.color="red";
+            errorgroupname.innerText="PLease enter group name !!!";
+            return false;
+          }
+          else{
+            var datestart = document.getElementById('effective-date').value;
+            var dateend = document.getElementById('effective-date2').value;
+            var errordate = document.getElementById('errordate');
+            if(dateend<datestart)
+            {
+              errordate.innerText="Date_end must after Date_begin";
+              errordate.style.color = "red";
+              return false;
+            }
+            else{
+              return true;
+
+            }
+          }
+        }
+      </script>
+      </td>
+      </tr>
+      <!--  <tr th:each="item:${loadMember}">-->
+      <!--    <td th:text="*{item.getStudentname()}"></td>-->
+      <!--    <td th:text="*{groupid}"></td>-->
+      <!--  </tr>-->
+    </table>
+
+  </article>
+
+</section>
+
+
+</body>
+</html>
+

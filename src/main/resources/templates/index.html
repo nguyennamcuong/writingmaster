@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Course | New Task</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="plugins//fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .content-wrapper{
+            background-color: #e6e6e661;
+        }
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .lilogin{
+            position: relative;
+            left: 650px;
+        }
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+            background-color: #e6e6e661;
+            color: black;
+        }
+        [class*=sidebar-dark] .btn-sidebar, [class*=sidebar-dark] .form-control-sidebar {
+            background-color: #e6e6e661;
+            border: 1px solid #56606a;
+            color: #fff;
+        }
+        .right:before {
+            -webkit-transform: skewX(-10deg);
+            -moz-transform: skewX(-10deg);
+            -ms-transform: skewX(-10deg);
+            transform: skewX(-10deg);
+        }
+        #divinvite {
+            width: 100%;
+            height: 50px;
+            border-width: 1.5px 1.5px 1.5px 0px;
+            border-color: #189AB4  #189AB4 #189AB4;
+            border-style: solid;
+            background: rgba(41, 154, 150, 0.44);
+
+
+        }
+
+        .right:hover:before {
+            -webkit-transform: skewX(0deg);
+            -moz-transform: skewX(0deg);
+            -ms-transform: skewX(0deg);
+            transform: skewX(0deg);
+        }
+        [class*=sidebar-dark-] {
+            background-color: #e6e6e661;
+        }
+        .button {
+            display: inline-block;
+            position:relative;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .button:before {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: "";
+            background: #189AB4;
+            transition: .2s;
+            -webkit-backface-visibility: hidden;
+        }
+
+        html, body {
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            display: table;
+        }
+
+        .container {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+
+
+
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper" th:>
+
+
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class=" navbar-nav">
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index.html" class="nav-link">AVT</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block lilogin" >
+                <a href="login.html" class="nav-link "><i style='font-size:24px' class='fas'>&#xf406;</i>
+                    Login</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <p>
+            <span class="brand-text font-weight-light"></span>
+      </p>
+
+        <div class="sidebar">
+
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                 <li class="nav-item menu-open">
+                        <a href="index.html" class="nav-link active">
+                            <p>
+                                Task
+                            </p>
+                        </a>
+
+                </ul>
+
+            </nav>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item menu-open">
+                        <a href="index.html" class="nav-link active">
+                            <p>
+                                Group
+                            </p>
+                        </a>
+
+                </ul>
+
+            </nav>
+
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper" >
+<!--        <div class="content-header">-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="row mb-2">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <h1 class="m-0">Your Task</h1>-->
+<!--                    </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+        <div class="container">
+            <div class="row "  >
+                <div class="yourtask " style="border-color: #195454 #189AB4 #189AB4;border-style: solid;border-width: 3.5px 1.5px 1.5px 1.5px ; width: 450px;float: left; font-size: 25px; font-weight: 400; margin-left: 30px; margin-top: 30px; height: 240px">
+                    <p style="margin-right: 300px; ">Your Tasks</p>
+                   <div class="buttonTask" style="margin-right: 150px; margin-top: -10px">
+                       <div class="container">
+                           <a class="button right" href="newtask.html" style="height: 30px; width: 120px; font-size:12px;"><p style="position: relative; bottom: 10px"><i style='font-size:12px' class='far'>&#xf15c;</i>
+                                &nbsp;New Task</p></a>
+                       </div>
+                       <div class="container">
+                           <a class="button right" href="deleteTask.html" style="height: 30px; width: 150px; font-size:12px;"><p style="position: relative; bottom: 10px">      <i  style="font-size:12px" class="fa">&#xf021;</i>
+                               Deleted Tasks</p></a>
+                       </div>
+                   </div>
+                    <hr style=" border: none;
+    height: 1.5px;
+    /* Set the hr color */
+    color: #189AB4; /* old IE */
+    background-color: #189AB4;
+    margin-top: -5px;
+">
+                    <div class="textTask">
+                        <p style="font-size: 14px; font-weight: 550; width: 400px;position: relative; right: 90px">You haven't created any task yet.</p>
+                        <p style="font-size: 14px;  width: 400px;position: relative; right: 85px">There are no tasks in your workbook. </p>
+                        <p style="font-size: 14px;  width: 400px;position: relative; right: 15px">  Click on 'New Task' to create more task to pratise your writing</p>
+                        <p style="font-size: 14px;  width: 400px;position: relative; right: 110px">
+                            Keep writing and improving!
+                        </p>
+
+                    </div>
+
+                </div>
+    <div class="" style="width: 3px;float: left">
+
+</div>
+                <div class="col invitationcode " style="padding:0px;border-color: #195454 #189AB4 #189AB4;border-style: solid;border-width: 3.5px 1.5px 1.5px 1.5px ; width: 550px;float: left; font-size: 25px; font-weight: 400; margin-left: 30px; margin-top: 30px; height: auto">
+<div class="invitation">
+    <p style="margin-right: 300px; ">Invitation code</p>
+  <div class="coderandom" style="width: 200px; float: left; position: relative;bottom: 45px;  left: 300px; font-size: 15px; border-style: solid; background-color: rgba(12,132,255,0.12);border-radius: 0px 0px 0px 10px;">
+      <script >
+          function makeid(l)
+          {
+              var text = "";
+              var char_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+              for(var i=0; i < l; i++ )
+              {
+                  text += char_list.charAt(Math.floor(Math.random() * char_list.length));
+              }
+              return text;
+          }
+          document.write(makeid(8));
+
+      </script>
+
+      &nbsp;      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+
+      <i onclick="tai_lai_trang()" style="font-size:14px" class="fa">&#xf021;</i>
+      <script>
+          function tai_lai_trang(){
+              location.reload();
+          }
+      </script>
+      &nbsp;
+      <input type="hidden" id="myInput" value="hello">
+      <button onclick="copytext()"  style="font-size:14px; border: none" class="fa">&#xf0c5;</button>
+      <script>
+          function copytext() {
+              // Get the text field
+              var copyText = document.getElementById("myInput");
+
+              // Select the text field
+              copyText.select();
+              copyText.setSelectionRange(0, 99999); // For mobile devices
+
+              // Copy the text inside the text field
+              navigator.clipboard.writeText(copyText.value);
+
+              // Alert the copied text
+              alert("Copied the text: " + copyText.value);
+          }
+      </script>
+  </div>
+</div>
+                    <hr style=" border: none;height: 1.5px; color: #189AB4; background-color: #189AB4; margin-top: -5px;">
+               <p style="font-size: 15px; font-weight: 550; text-align: left; position: relative; right: 190px">Invite people to your workbook via email.</p>
+               <p style="font-size: 15px;  text-align: left; ">&nbsp; &nbsp;Enter the email addresses of people you would like to invite to your workbook &nbsp; below and click the 'Invite' button, or send them the above invitation code.</p>
+                    <form >
+                        <textarea style="font-size: 12px; width: 480px; height: 100px"></textarea>
+                        <br>
+                    </form>
+                    <div id="divinvite" >
+                        <div class="container">
+                            <a class="button right" href="#" style="height: 20px; width: 120px; font-size:15px;position: relative; top: 10px; left: 370px"><p style="position: relative; bottom: 10px"><i style='font-size:15px' class='fas'>&#xf2b6;</i>
+                              &nbsp;  Invite </p></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+<!--    <aside class="control-sidebar control-sidebar-dark">-->
+<!--    </aside>-->
+</div>
+
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="plugins/sparklines/sparkline.js"></script>
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+</div></body>
+</html>

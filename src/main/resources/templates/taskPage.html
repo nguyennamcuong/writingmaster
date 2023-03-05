@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+
+  <title>Manage Post Student</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <!-- summernote -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .content-wrapper{
+      background-color: #e6e6e661;
+    }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .lilogin{
+      position: relative;
+      left: 650px;
+    }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+      background-color: #e6e6e661;
+      color: black;
+    }
+    [class*=sidebar-dark] .btn-sidebar, [class*=sidebar-dark] .form-control-sidebar {
+      background-color: #e6e6e661;
+      border: 1px solid #56606a;
+      color: #fff;
+    }
+    .right:before {
+      -webkit-transform: skewX(-10deg);
+      -moz-transform: skewX(-10deg);
+      -ms-transform: skewX(-10deg);
+      transform: skewX(-10deg);
+    }
+    #divinvite {
+      width: 100%;
+      height: 50px;
+      border-width: 1.5px 1.5px 1.5px 0px;
+      border-color: #189AB4  #189AB4 #189AB4;
+      border-style: solid;
+      background: rgba(41, 154, 150, 0.44);
+
+
+    }
+
+    .right:hover:before {
+      -webkit-transform: skewX(0deg);
+      -moz-transform: skewX(0deg);
+      -ms-transform: skewX(0deg);
+      transform: skewX(0deg);
+    }
+    [class*=sidebar-dark-] {
+      background-color: #e6e6e661;
+    }
+    .button {
+      display: inline-block;
+      position:relative;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .button:before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      background: #189AB4;
+      transition: .2s;
+      -webkit-backface-visibility: hidden;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      display: table;
+    }
+
+    .container {
+      display: table-cell;
+      vertical-align: middle;
+
+    }
+
+
+
+  </style>
+
+  <style>
+    *{
+      font-size: 18px;
+      font-family: Poppins;
+    }
+    .container_all{
+      width: 70%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 3px solid #168a90;
+      position: absolute;
+      top: 450px;
+    }
+    .input{
+      margin: 0px 15px 0px 15px;
+
+
+    }
+    .word{
+      margin: 10px 15px 0px 15px;
+      text-align: left;
+
+    }
+    .word button{
+      margin-right: 15px;
+    }
+    .word-hover:hover{
+      color: #FFFFFF;
+      background: #088488 ;
+    }
+    .question{
+      margin: 10px 15px 0px 15px;
+
+    }
+    .check-box{
+      margin: 50px 15px 0px 15px;
+    }
+    .end_form{
+      margin: 50px 0px 0px 0px;
+      background: #b2dadb;
+      height: 90px;
+      text-align: left;
+    }
+    .text-btn-noti{
+      float: left;
+      margin-right:20px;
+      font-weight: 800;
+
+    }
+
+    .btn-notification {
+      float: right;
+      position: relative;
+      bottom: 20px;
+
+    }
+    p{
+      text-align: left;
+    }
+
+  </style>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#myTextarea',
+      plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+      menubar: 'file edit view insert format tools table help',
+      toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+      toolbar_sticky: true,
+      autosave_ask_before_unload: true,
+      autosave_interval: '30s',
+      autosave_prefix: '{path}{query}-{id}-',
+      autosave_restore_when_empty: false,
+      autosave_retention: '2m',
+      image_advtab: true,
+      link_list: [
+        { title: 'My page 1', value: 'https://www.codexworld.com' },
+        { title: 'My page 2', value: 'http://www.codexqa.com' }
+      ],
+      image_list: [
+        { title: 'My page 1', value: 'https://www.codexworld.com' },
+        { title: 'My page 2', value: 'http://www.codexqa.com' }
+      ],
+      image_class_list: [
+        { title: 'None', value: '' },
+        { title: 'Some class', value: 'class-name' }
+      ],
+      importcss_append: true,
+      file_picker_callback: (callback, value, meta) => {
+        /* Provide file and text for the link dialog */
+        if (meta.filetype === 'file') {
+          callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+        }
+
+        /* Provide image and alt text for the image dialog */
+        if (meta.filetype === 'image') {
+          callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+        }
+
+        /* Provide alternative source and posted for the media dialog */
+        if (meta.filetype === 'media') {
+          callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+        }
+      },
+      templates: [
+        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+        { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+        { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+      ],
+      template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+      template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+      height: 200,
+      image_caption: true,
+      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+      noneditable_class: 'mceNonEditable',
+      toolbar_mode: 'sliding',
+      contextmenu: 'link image table',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+    });
+  </script>
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <style>
+    *{
+      font-family: Poppins;
+      font-size: 18px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      width: 100%;
+      height: 50px;
+      background-color: #666;
+      text-align: left;
+      color: white;
+      padding-bottom: 3px;
+      background-color:#FFFFFF;
+      color: black;
+      margin-bottom: 2px;
+      box-shadow: 0px 3px 0px 0px #dcdcdc;        }
+
+
+    li{
+      margin:10px;
+    }
+    nav {
+      text-decoration: none;
+      float: left;
+      width: 18%;
+      height: 300px;
+      background: white;
+      padding: 20px;
+    }
+
+    nav ul {
+      margin-left: 10px;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    article {
+      float: left;
+      padding: 20px;
+      width: 82%;
+      background: rgba(243, 243, 243, 0.99);
+      height: auto;
+    }
+
+
+    section::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+
+    footer {
+      background-color: #777;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      nav, article {
+        width: 100%;
+        height: auto;
+      }
+    }
+    a:hover {
+      color: #5BA525 ;
+      text-decoration: none;
+    }
+
+    a{
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+
+    }
+    p{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .carousel-indicators [data-bs-target]{
+      background-color: #5BA525;
+    }
+
+    .form-select{
+      background-size: 16px 14px;
+      padding-bottom: 0px;
+      padding-top: 5px;
+    }
+
+    .content-answer{
+      width: 550px;
+      height: 350px;
+      float: left;
+      margin: 0px 50px 30px 0px;
+      background: #FFFFFF;
+
+    }
+    ::placeholder {
+      color: #D2D2D2;
+    }
+    img{
+      min-height: 150px;
+      max-height: 150px;
+      max-width: 381px;
+    }
+    .content{
+      max-height: 30px;
+    }
+    .image_topic{
+      padding-bottom: 15px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<script>
+  var myModal = document.getElementById('myModal')
+  var myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+  })
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+      if(minutes ==5 && seconds==0)
+      {
+        display.style.color="red";
+      }
+      localStorage.setItem("tm",timer);
+      // alert(timer);
+      if (--timer < 0) {
+        timer = 0;
+        localStorage.setItem("tm",1800);
+      }
+    }, 1000);
+  }
+
+  window.onload = function () {
+    var local = localStorage.getItem("tm");
+
+    if(local==null)
+    {
+      var fiveMinutes = 60*30,
+              display = document.querySelector('#time');
+      startTimer(fiveMinutes, display);
+    }
+    else{
+      var fiveMinutes = local,
+              display = document.querySelector('#time');
+      startTimer(fiveMinutes, display);
+    }
+
+
+  };
+  function returnTime(){
+    localStorage.setItem("tm",1800);
+  }
+</script>
+<header>
+  <h3>NBS Company</h3>
+</header>
+
+
+<section>
+
+  <nav>
+    <ul>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+          <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+        </svg> &nbsp;&nbsp;
+          <a href="/"> <b>Manage Group </b> </a></li>
+      </ul>
+      <li th:each="item:${loadUser}"><a th:text="${item.getGroup_name()}" th:href="@{'groupDdetail?id='+${item.getGroup_id()}}"> &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+        <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+        <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      </svg></a>
+
+      </li>
+
+      </li>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+          <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+        </svg> &nbsp;&nbsp;
+          <a href=""> <b>My writing </b> </a></li>
+      </ul>
+
+      <li><a href="list">IELTS Class 1 &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+        <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+        <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      </svg></a>
+
+      </li>
+      <li><a href="list">TOEFL Class 2</a></li>
+      <ul style="margin-left:-33px">
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+          <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+          <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+        </svg> &nbsp;&nbsp;
+          <a href="" th:href="@{/edituser}">Settings</a></li>
+      </ul>
+
+    </ul>
+  </nav>
+  <div class="container" >
+    <div class="row"  style="position: relative; right: 30px">
+      <div class="yourtask " style="border-color: #195454 #189AB4 #189AB4;border-style: solid;border-width: 3.5px 1.5px 1.5px 1.5px ; width: 450px;float: left; font-size: 25px; font-weight: 400; margin-left: 30px; margin-top: 30px; height: auto">
+        <p style="margin-right: 300px; ">Your Tasks</p>
+        <div class="buttonTask" style="margin-right: 150px;">
+          <div class="container"style="padding: 0px 50px 10px 10px">
+            <a class="button right" href="pagecreate" style="height: 30px; width: 120px; font-size:12px;"><p style="position: relative; bottom: 10px; font-size:12px"><i style='font-size:12px' class='far'>&#xf15c;</i>
+              &nbsp;New Task</p></a>
+          </div>
+          <!--            <div class="container"style="padding: 0px 0px 10px 10px">-->
+          <!--              <a class="button right" href="deleteTask.html" style="height: 30px; width: 150px; font-size:12px;"><p style="position: relative; bottom: 10px;font-size: 12px">      <i  style="font-size:12px" class="fa">&#xf021;</i>-->
+          <!--                Deleted Tasks</p></a>-->
+          <!--            </div>-->
+
+        </div>
+        <hr style=" border: none;
+    height: 1.5px;
+    /* Set the hr color */
+    color: #189AB4; /* old IE */
+    background-color: #189AB4;
+    margin-top: -5px;
+">
+        <div  class="textTask" >
+          <label id="divtong" style="font-size: 14px; width: 400px;text-align: left">
+            <!--              <b>You haven't created any task yet.</b>-->
+            <!--              <br>-->
+            <!--              There are no tasks in your workbook.-->
+            <!--              <br>-->
+            <!--              Click on 'New Task' to create more task to pratise your writing-->
+            <!--              <br>-->
+            <!--              Keep writing and improving!-->
+          </label>
+          <table style="position: relative; bottom: 75px; text-align: left ; border-color: #189AB4 #189AB4 #189AB4;border-style: solid;border-width: 1.5px 1.5px 1.5px 1.5px ;">
+
+            <div class="showData" style=" position: relative; bottom: 30px;" th:each="item:${listTask} ">
+              <div class="showData"  style="width: 80%; float: left">
+                <p th:utext="${item.getTask_type() + ':'+ item.task_about} "  th:value="${item.getTask_type()+':'+ item.getTask_about()}" style="text-align: left; ">
+                </p>
+                <p th:utext="${item.getTask_content()} "  th:value="${item.getTask_type()+':'+ item.getTask_content()}" style="text-align: left; float: left ">
+
+                </p>
+                <hr>
+              </div>
+              <div style="width: 20%; float: left">
+                <a href="#" style='font-size:17px' class='far fa-edit'></a>
+                <a th:id="${item.getId()}" onclick="deleteTask(this.id)" href="#" style='font-size:17px' class='far'>&#xf2ed;</a>
+                <script>
+                  function deleteTask(id){
+                    location.href='deletetask?id='+id;
+                  }
+                </script>
+              </div>
+
+            </div>
+
+
+
+          </table>
+
+        </div>
+
+      </div>
+      <div class="" style="width: 3px;float: left">
+
+      </div>
+      <div class="col invitationcode " style="padding:0px;border-color: #195454 #189AB4 #189AB4;border-style: solid;border-width: 3.5px 1.5px 1.5px 1.5px ; width: 550px;float: left; font-size: 25px; font-weight: 400; margin-left: 30px; margin-top: 30px; height: 325px">
+        <div class="invitation">
+          <p style="margin-right: 300px; ">Invitation code</p>
+          <div class="coderandom" style="width: 200px; float: left; position: relative;bottom: 24px;  left: 275px; font-size: 15px; border-style: solid; background-color: rgba(12,132,255,0.12);border-radius: 0px 0px 0px 10px;">
+            <script >
+              function makeid(l)
+              {
+                var text = "";
+                var char_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                for(var i=0; i < l; i++ )
+                {
+                  text += char_list.charAt(Math.floor(Math.random() * char_list.length));
+                }
+                return text;
+              }
+              document.write(makeid(8));
+
+            </script>
+            <i onclick="tai_lai_trang()" style="font-size:14px" class="fa">&#xf021;</i>
+            <script>
+              function tai_lai_trang(){
+                location.reload();
+              }
+            </script>
+            &nbsp;
+            <input type="hidden" id="myInput" value="hello">
+            <button onclick="copytext()"  style="font-size:14px; border: none" class="fa">&#xf0c5;</button>
+            <script>
+              function copytext() {
+                // Get the text field
+                var copyText = document.getElementById("myInput");
+
+                // Select the text field
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(copyText.value);
+
+                // Alert the copied text
+                alert("Copied the text: " + copyText.value);
+              }
+            </script>
+          </div>
+        </div>
+        <hr style=" border: none;height: 1.5px; color: #189AB4; background-color: #189AB4; margin-top: -5px; position: relative; top: 10px">
+        <p style="font-size: 15px; font-weight: 550; text-align: left; position: relative; right: 190px">Invite people to your workbook via email.</p>
+        <p style="font-size: 15px;  text-align: left; ">&nbsp; &nbsp;Enter the email addresses of people you would like to invite to your workbook &nbsp; below and click the 'Invite' button, or send them the above invitation code.</p>
+        <form >
+          <textarea style="font-size: 12px; width: 480px; height: 100px"></textarea>
+          <br>
+        </form>
+        <div id="divinvite" style="position: relative; top:55px" >
+          <div class="container">
+            <a class="button right" href="#" style="height: 20px; width: 120px; font-size:15px;position: relative; top: 10px; left: 325px"><p style="position: relative; bottom: 10px; font-size: 12px"><i style='font-size:12px' class='fas'>&#xf2b6;</i>
+              &nbsp;  Invite </p></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--    <link rel="stylesheet" href="css/main.css"/>-->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+    ></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <title>Login</title>
+    <!--    <script>-->
+    <!--        function checkforblank() {-->
+    <!--            if (document.getElementById('User').value == ""){-->
+
+    <!--                alert('please enter your User');-->
+    <!--                document.getElementById('User'). style.borderColor="red";-->
+    <!--                return false;-->
+    <!--            }-->
+    <!--            if (document.getElementById('Pass').value == ""){-->
+
+    <!--                alert('please enter your Password');-->
+    <!--                document.getElementById('Pass'). style.borderColor="red";-->
+    <!--                return false;-->
+    <!--            }-->
+    <!--        }-->
+    <!--    </script>-->
+    <script>
+        var x = true;
+        function myfunction() {
+            if (x) {
+                document.getElementById('Pass').type = "text";
+                x = false;
+            } else {
+                document.getElementById('Pass').type = "password";
+                x=true;
+            }
+        }
+        const form = document.getElementById('formcheck');
+        // const username = document.getElementById('User');
+        const password = document.getElementById('Pass');
+
+
+    </script>
+</head>
+<style>
+    * {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: lightgray;
+        opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: lightgray;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: lightgray;
+    }
+
+    .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: .5px;
+
+        background-color: lightgray;
+    }
+
+    input[type='radio'] {
+        accent-color: #4dc038;
+
+    }
+
+    .bg-green {
+        background-color: #4dc038;
+    }
+
+    .text-lightgray {
+        color: lightgray;
+    }
+
+    .text-grey {
+        color: grey;
+    }
+
+    .text-blue {
+        color: rgb(20, 20, 130);
+    }
+
+    .text-green {
+        color: #4dc038;
+    }
+
+    .display-7 {
+        font-size: 12px;
+    }
+
+    .input-control input {
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        display: block;
+        font-size: 12px;
+        padding: 10px;
+        width: 95%;
+    }
+    .form-group{
+        height: 50px;
+    }
+    .input-control{
+        padding: 10px 0px
+    }
+    .input-control input:focus {
+        outline: 0;
+    }
+
+    .input-control.success input {
+        border-color: #09c372;
+    }
+
+    .input-control.error input {
+        border-color: #ff3860;
+    }
+    .input-control .error {
+        color: #ff3860;
+        font-size: 12px;
+        height: 15px;
+        text-align: left;
+    }
+</style>
+<body>
+<div class="container bg-white">
+    <form id="formcheck" action="/getmain" method="post" th:object="${user}">
+        <div class="col-md-5 col-10  text-center mx-auto">
+            <img
+                    class="rounded-circle my-4"
+                    width="100px"
+                    src="https://tienganhnghenoi.vn/wp-content/uploads/2020/05/cropped-96225991_549035042708519_8176283981029834752_n.png"
+                    alt=""
+            />
+            <p class="text-grey mb-5"> Make you bacome a professional wirter</p>
+            <div class="form-group">
+                <button class="w-100 border bg-light text-grey h-75">
+                    <i class="fa-brands fa-facebook-f mx-1 text-blue"></i> <span class="text-lightgray">Continue with Facebook</span>
+                </button>
+            </div>
+            <div class="divider d-flex align-items-center">
+                <p class="text-center mb-2 mx-3"><span class="text-lightgray">or</span></p>
+            </div>
+            <script>
+                window.onload = function (){
+                        let username = document.getElementById('User');
+                        // let errorr = document.getElementById('newerror');
+                        let dulieu = localStorage.getItem("id1");
+                        if(username.value!='') { //
+                            if (dulieu == "1") {
+                                // error.innerText="";
+                                localStorage.setItem("id1", "0");
+                            } else {
+                                document.getElementById('myModal').style.display = 'block'
+                                // error.innerText="Username or Password not correct";
+                                // error.style.color="red";
+                            }
+                        }
+                }
+                function handleModal(){
+                    let modal = document.getElementById('myModal')
+                    modal.style.display = modal.style.display == 'none' ? 'block    ' : 'none'
+                }
+                function getuser(){
+                    var username = document.getElementById('User');
+                    var password = document.getElementById('Pass');
+                    var errorpass = document.getElementById('errorpass');
+                    var errorUser = document.getElementById('errorUserName')
+                    if(username.value==''&& password.value=='')
+                    {
+                        username.style.borderColor = "red";
+                        // username.setAttribute("placeholder","Please enter your UserName !!");
+                        errorUser.innerText="Please enter your UserName !!";
+                        errorUser.style.color="red";
+                        password.style.borderColor = "red";
+                        // password.setAttribute("placeholder","Please enter your PassWord !!");
+                        errorpass.innerText="Please enter your PassWord !!";
+                        errorpass.style.color="red";
+                        return false;
+                    }
+                    else{
+                        if(password.value!=''&&username.value=='')
+                        {
+                            username.style.borderColor = "red";
+                            errorUser.innerText="Please enter your UserName !!";
+                            errorUser.style.color="red";
+                            // username.setAttribute("placeholder","Please enter your UserName !!");
+                            if(password.value.length<8)
+                            {
+                                password.style.borderColor = "red";
+                                errorpass.innerText="Password must have at least 8 characters !!!";
+                                errorpass.style.color="red";
+                                // password.setAttribute("placeholder","Password must have at least 8 characters !!!");
+                            }
+                            else{
+                                password.style.borderColor ="green";
+                                errorpass.innerText=""
+                            }
+                            return false;
+                        }
+                        else{
+                            if(username.value!=''&&password.value=='')
+                            {
+                                password.style.borderColor = "red";
+                                // password.setAttribute("placeholder","Please enter your PassWord !!");
+                                password.innerText="Please enter your PassWord !!";
+                                username.style.borderColor = "green";
+                                errorUser.innerText="";
+                                return false;
+                            }
+                            else{
+                                if(password.value.length<8)
+                                {
+                                    password.style.borderColor = "red";
+                                    errorpass.innerText="Password must have at least 8 characters!!";
+                                    errorpass.style.color="red";
+                                    username.style.borderColor="green";
+                                    errorUser.innerText="";
+                                    // password.setAttribute("placeholder","Password must have at least 8 characters !!!");
+                                    return false;
+                                }
+                                else{
+                                    errorUser.innerText="";
+                                    errorpass.innerText="";
+                                    return true;
+
+                                }
+                                // username.style.borderColor = "green";
+                                // password.style.borderColor="green";
+                            }
+                        }
+                    }
+                }
+            </script>
+            <div class="modal" style="background: rgba(0,0,0,0.6)" id="myModal">
+                <div class="modal-dialog d-flex h-75 align-items-center">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Thông Báo</h4>
+                            <button type="button" class="btn-close" onclick="handleModal()" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" style="text-align: left">
+                            Incorrect account or password !!
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="btn-close" onclick="handleModal()" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-control">
+                    <input id="User" th:field="*{username}" class="w-100" type="text"  placeholder="UserName"/>
+                    <label id="errorUserName" style="text-align: left;font-size: 12px"/>
+                </div>
+            </div>
+            <div class="form-group my-3 ">
+                <div class="input-control ">
+                    <input  id="Pass"type="password" th:field="*{password}" class="w-100" placeholder="Password"/>
+                    <label id="errorpass" style="text-align: left;font-size: 12px"/>
+                </div>
+            </div>
+            <div class="form-group text-end mb-4 pe-3">
+                <input onclick="myfunction()" type="checkbox" id="check"/>
+                <label for="check">Show Password</label>
+            </div>
+            <div cl ass="form-group">
+                <input class="w-100 bg-green border text-light h-75" onclick="return getuser()" type="submit" value="SIGN IN"/>
+            </div>
+            <div class="form-group mt-3">
+                <a class="text-green display-7" href="ForgotPass">Forgot password?</a>
+            </div>
+            <div class="form-group mt-5">
+                <a class="text-muted text-decoration-none" href="#">Don't have an account</a>
+            </div>
+            <div class="form-group pb-5">
+                <a class="text-green  text-decoration-none" href="register">Create account</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

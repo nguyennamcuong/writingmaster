@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Course | New Task</title>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+
+  <!-- summernote -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .content-wrapper{
+      background-color: #e6e6e661;
+    }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .lilogin{
+      position: relative;
+      left: 650px;
+    }
+    .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+      background-color: #e6e6e661;
+      color: black;
+    }
+    [class*=sidebar-dark] .btn-sidebar, [class*=sidebar-dark] .form-control-sidebar {
+      background-color: #e6e6e661;
+      border: 1px solid #56606a;
+      color: #fff;
+    }
+    .right:before {
+      -webkit-transform: skewX(-10deg);
+      -moz-transform: skewX(-10deg);
+      -ms-transform: skewX(-10deg);
+      transform: skewX(-10deg);
+    }
+    #divinvite {
+      width: 100%;
+      height: 50px;
+      border-width: 1.5px 1.5px 1.5px 0px;
+      border-color: #189AB4  #189AB4 #189AB4;
+      border-style: solid;
+      background: rgba(41, 154, 150, 0.44);
+
+
+    }
+
+    .right:hover:before {
+      -webkit-transform: skewX(0deg);
+      -moz-transform: skewX(0deg);
+      -ms-transform: skewX(0deg);
+      transform: skewX(0deg);
+    }
+    [class*=sidebar-dark-] {
+      background-color: #e6e6e661;
+    }
+    .button {
+      display: inline-block;
+      position:relative;
+      padding: 15px 25px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .button:before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      background: #189AB4;
+      transition: .2s;
+      -webkit-backface-visibility: hidden;
+    }
+
+    html, body {
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      display: table;
+    }
+
+    .container {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+
+
+
+  </style>
+
+  <style>
+    *{
+      font-size: 18px;
+      font-family: Poppins;
+    }
+    .container_all{
+      width: 70%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 3px solid #168a90;
+      position: absolute;
+      top: 450px;
+    }
+    .input{
+      margin: 0px 15px 0px 15px;
+
+
+    }
+    .word{
+      margin: 10px 15px 0px 15px;
+      text-align: left;
+
+    }
+    .word button{
+      margin-right: 15px;
+    }
+    .word-hover:hover{
+      color: #FFFFFF;
+      background: #088488 ;
+    }
+    .question{
+      margin: 10px 15px 0px 15px;
+
+    }
+    .check-box{
+      margin: 50px 15px 0px 15px;
+    }
+    .end_form{
+      margin: 50px 0px 0px 0px;
+      background: #b2dadb;
+      height: 90px;
+      text-align: left;
+    }
+    .text-btn-noti{
+      float: left;
+      margin-right:20px;
+      font-weight: 800;
+
+    }
+
+    .btn-notification {
+      float: right;
+      position: relative;
+      bottom: 20px;
+
+    }
+
+  </style>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#myTextarea',
+      extended_valid_elements : '*[*]',
+      plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+      menubar: 'file edit view insert format tools table help',
+      toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+      toolbar_sticky: true,
+      autosave_ask_before_unload: true,
+      autosave_interval: '30s',
+      autosave_prefix: '{path}{query}-{id}-',
+      autosave_restore_when_empty: false,
+      autosave_retention: '2m',
+      image_advtab: true,
+      link_list: [
+        { title: 'My page 1', value: 'https://www.codexworld.com' },
+        { title: 'My page 2', value: 'http://www.codexqa.com' }
+      ],
+      image_list: [
+        { title: 'My page 1', value: 'https://www.codexworld.com' },
+        { title: 'My page 2', value: 'http://www.codexqa.com' }
+      ],
+      image_class_list: [
+        { title: 'None', value: '' },
+        { title: 'Some class', value: 'class-name' }
+      ],
+      importcss_append: true,
+      file_picker_callback: (callback, value, meta) => {
+        /* Provide file and text for the link dialog */
+        if (meta.filetype === 'file') {
+          callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+        }
+
+        /* Provide image and alt text for the image dialog */
+        if (meta.filetype === 'image') {
+          callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+        }
+
+        /* Provide alternative source and posted for the media dialog */
+        if (meta.filetype === 'media') {
+          callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+        }
+      },
+      templates: [
+        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+        { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+        { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+      ],
+      template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+      template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+      height: 200,
+      image_caption: true,
+      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+      noneditable_class: 'mceNonEditable',
+      toolbar_mode: 'sliding',
+      contextmenu: 'link image table',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+    });
+  </script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class=" navbar-nav">
+
+      <li class="nav-item d-none d-sm-inline-block avt" style="width: 200px">
+        <img th:src="@{/images/logo.jpg}" style="height: 70px; width: 130px">
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="list" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block lilogin" >
+        <a href="login.html" class="nav-link "><i style='font-size:24px' class='fas'>&#xf406;</i>
+          Login</a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <div class="container_all">
+    <div class="header_form">
+      <h4 style="margin: 10px" >New CEFR Task</h4>
+      <hr style=" border: none;height: 1.5px;background-color: #70c2c5;margin-top: -5px;">
+    </div>
+    <form  action="update" enctype="multipart/form-data"
+           method="post" id="fileUploadForm">
+      <div class="input" >
+        <p style="float:left; margin: 15px 0px 3px 0px;font-weight: 550">Write</p>
+        <input id="task1" name="task1" style="border-bottom-left-radius: 9px;  background: #f8fdfd; font-size: 17px;width: 100%;border: 1px solid #D2D2D2; padding: 5px" type="text" placeholder="Enter the writing type, e.g. 'An essay'" >
+      </div>
+      <div class="input">
+        <p style="float:left;margin: 15px 0px 3px 0px; font-weight: 550">About</p>
+        <input  id="task2" name="task2" style="border-bottom-left-radius: 9px;background: #f8fdfd;font-size: 17px;width: 100%;border: 1px solid #D2D2D2; padding: 5px" type="text" placeholder="Describe the topic, e.g 'Transport in cities'" >
+      </div>
+      <div class="word">
+        <button class="word-hover" type="button" style=" float: left;border:0px;border-radius: 3px;padding: 5px 10px"><a >Between</a></button>
+        <input type="number" name="task3" id="task3" style="border-bottom-left-radius: 9px;  background: #f8fdfd; font-size: 17px;width: 10%;border: 1px solid #D2D2D2; padding: 5px"  placeholder="150" >&nbsp;&nbsp;and&nbsp;&nbsp;
+        <input type="number" name="task4" id="task4" style="border-bottom-left-radius: 9px;  background: #f8fdfd; font-size: 17px;width: 10%;border: 1px solid #D2D2D2; padding: 5px" placeholder="200" >&nbsp;&nbsp;word
+
+      </div>
+      <div class="question">
+        <p style="font-weight: bold; text-align: left;">Question</p>
+        <textarea name="myTextarea" id="myTextarea"></textarea>
+      </div>
+      <!--            <div class="container"style="padding: 10px 40px 20px 40px">-->
+      <!--                <input class="button right" type="file" href="pagecreate" style="height: 30px; width: 150px; font-size:12px;"><p style="position: relative; bottom: 10px; font-size:12px"><i style='font-size:12px' class='far'>&#xf15c;</i>-->
+      <!--                    </p></input>-->
+      <!--            </div>-->
+
+      <div class="edit-image">
+        <script >
+          function uploadFile() {
+            var form = $('#fileUploadForm')[0];
+
+            var data = new FormData(form);
+
+            data.append("CustomField", "This is some extra data, testing");
+            $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: "/upload",
+              data: data,
+              //http://api.jquery.com/jQuery.ajax/
+              //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+              processData: false, //prevent jQuery from automatically transforming the data into a query string
+              contentType: false,
+              cache: false,
+              timeout: 600000,
+              success: function (data) {
+                alert("success");
+
+              },
+              error: function (e) {
+                alert("error");
+
+              }
+            });
+            return false;
+          }
+          function alertFilename()
+          {
+            var thefile = document.getElementById('pic1');
+            var img = document.getElementById('imgpicture');
+            var button = document.getElementById('btnimg');
+            // img.src='images/'+thefile.files.item(0).name;
+            var writedata = document.getElementById('task1');
+            var aboutdata = document.getElementById('task2');
+            var fromdata = document.getElementById('task3');
+            var todata = document.getElementById('task4');
+            // var myContent = tinymce.get("myTextarea").getContent();
+            // alert(myContent)
+            localStorage.setItem("write",writedata.value);
+            localStorage.setItem("about",aboutdata.value);
+            localStorage.setItem("from",fromdata.value);
+            localStorage.setItem("to",todata.value);
+            // localStorage.setItem("areadata",myContent);
+            button.form.submit();
+          }
+          window.onload= function (){
+            var setfile = document.getElementById('setfile');
+            var dulieumoi = document.getElementById('duliemoi');
+            if(dulieumoi.value=="0")
+            {
+              var area = localStorage.getItem("areadata");
+              alert(area);
+              tinymce.get("myTextarea").setContent(area);
+              var myContent = tinymce.get("myTextarea").getContent();
+              localStorage.setItem("areadata",myContent);
+            }
+            else{
+              var write = localStorage.getItem("write");
+              var about = localStorage.getItem("about");
+              var from = localStorage.getItem("from");
+              var to = localStorage.getItem("to");
+              var writedata = document.getElementById('task1');
+              var aboutdata = document.getElementById('task2');
+              var fromdata = document.getElementById('task3');
+              var todata = document.getElementById('task4');
+              writedata.value = write;
+              aboutdata.value = about;
+              fromdata.value = from;
+              todata.value = to;
+              var area = localStorage.getItem("areadata");
+              alert(area);
+              tinymce.get("myTextarea").setContent(area);
+              var myContent = tinymce.get("myTextarea").getContent();
+              localStorage.setItem("areadata",myContent);
+              setfile.innerText=dulieumoi.value+'files selected';
+            }
+          }
+
+          // '?path='+thefile.value
+        </script>
+        <input type="file" size="50" multiple id="pic1" name="pic1" accept="image/*" style="position: relative; right:230px; top:10px">
+        <br>    <label id="setfile"/>
+      </div>
+      <button hidden="hidden" id="btnimg" class="btn btn-primary">Upload</button>
+      <script>
+        function showdata()
+        {
+          var task1 = document.getElementById('task1');
+          var show1 = document.getElementById('show1');
+          show1.value = task1.value;
+          alert(task1.value);
+        }
+      </script>
+      <div class="end_form">
+        <div class="check-box">
+          <div class="form-check" >
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  style="margin-top: 10px">
+            <label class="form-check-label" for="flexCheckDefault"  style="margin-top: 10px">
+              Publish this task now?
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Picture task: Do not a 0-5 score for task achievement
+            </label>
+          </div>
+        </div>
+        <div class="btn-notification">
+          <div class="text-btn-noti">
+            <button type="submit" onclick="alertFilename()" style="color: #FFFFFF; background: #5BA525; border: 2px solid #5BA525; height:35px;width: 90px;padding:0px 3px ">
+              <p style="letter-spacing: 1px">Save</p> </button>
+          </div>
+
+
+        </div>
+      </div>
+
+    </form>
+    <script>
+      function deleteImage() {
+        var close = document.getElementsByName("data");
+        var imgid = document.getElementById('imageid').value;
+        alert(imgid)
+        // location.href="alo?id="+imgid;
+        // for (var i = 0; i < close.length; i++)
+        // {
+        //     alert(close[i].value);
+        // }
+      }
+    </script>
+
+  </div>
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+
+</div></body>
+</html>

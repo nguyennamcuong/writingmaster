@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <title>Manage Post Student</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+
+    <style>
+        *{
+            font-family: Poppins;
+            font-size: 18px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            background-color: #666;
+            text-align: left;
+            color: white;
+            padding-bottom: 3px;
+            background-color:#FFFFFF;
+            color: black;
+            margin-bottom: 2px;
+            box-shadow: 0px 3px 0px 0px #dcdcdc;        }
+
+
+        li{
+            margin:10px;
+        }
+        nav {
+            text-decoration: none;
+            float: left;
+            width: 18%;
+            height: 300px;
+            background: white;
+            padding: 20px;
+        }
+
+        nav ul {
+            margin-left: 10px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 82%;
+            background: rgb(245, 245, 245);
+            height: auto;
+        }
+
+
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+        a:hover {
+            color: #5BA525 ;
+            text-decoration: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+
+        }
+        p{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .carousel-indicators [data-bs-target]{
+            background-color: #5BA525;
+        }
+
+        .form-select{
+            background-size: 16px 14px;
+            padding-bottom: 0px;
+            padding-top: 5px;
+        }
+
+        .content-answer{
+            width: 320px;
+            height: 370px;
+            float: left;
+            margin: 10px 30px 0px 30px;
+            background: #FFFFFF;
+
+        }
+        ::placeholder {
+            color: #D2D2D2;
+        }
+
+        .group_content{
+            background: #FFFFFF;
+
+        }
+        .content-group{
+            margin: 0px 20px 0px 20px;
+        }
+
+        button:hover.btnyesno{
+            background: #5BA525; color: #FFFFFF;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+            if(minutes ==5 && seconds==0)
+            {
+                display.style.color="red";
+            }
+            localStorage.setItem("tm",timer);
+            // alert(timer);
+            if (--timer < 0) {
+                timer = 0;
+                localStorage.setItem("tm",1800);
+            }
+        }, 1000);
+    }
+
+    // window.onload = function () {
+    //     var local = localStorage.getItem("tm");
+    //
+    //     if(local==null)
+    //     {
+    //         var fiveMinutes = 60*30,
+    //             display = document.querySelector('#time');
+    //         startTimer(fiveMinutes, display);
+    //     }
+    //     else{
+    //         var fiveMinutes = local,
+    //             display = document.querySelector('#time');
+    //         startTimer(fiveMinutes, display);
+    //     }
+    //
+    //
+    // };
+    function returnTime(){
+        localStorage.setItem("tm",1800);
+    }
+
+    function createnewgroup(){
+        var datecreate = document.getElementById('datecreate').value;
+        var dateend = document.getElementById('dateend').value;
+        var label = document.getElementById('thongbao');
+        var groupname = document.getElementById('groupname2');
+        if(groupname.value=='')
+        {
+
+
+        }
+        else{
+            if(datecreate=='')
+            {
+
+            }
+            else{
+                if(dateend=='')
+                {
+                    label.innerText="Please choose Endate";
+                    label.style.color="red";
+                }
+                else{
+                    if(dateend<datecreate)
+                    {
+                        label.innerText="Enddate must after Startdate";
+                        label.style.color="red";
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
+    function clearText(){
+        var groupname = document.getElementById('groupname2');
+        var grouppass = document.getElementById('groupass2');
+        var groupnote = document.getElementById('groupnote2');
+        groupname.value = "";
+        groupnote.value = "";
+        grouppass.value="";
+    }
+
+    function getdata1(dulieu) {
+        // errorpass.innerText = "Password must have at least 8 charaters";
+        // errorpass.style.color="red";
+        localStorage.setItem("dulieu",dulieu);
+    }
+    function pickyes()
+    {
+        var memberid = localStorage.getItem("dulieu");
+        location.href = "/deletemember?id="+memberid;
+    }
+    function picno()
+    {
+        location.href = "/";
+    }
+</script>
+<header>
+    <h3>NBS Company</h3>
+</header>
+
+
+<section>
+
+    <nav>
+        <ul>
+            <ul style="margin-left:-33px">
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+                    <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+                </svg> &nbsp;&nbsp;
+                    <a href="/"> <b>Manage Group </b> </a></li>
+            </ul>
+            <li th:each="item:${loadUser}"><a th:text="${item.getGroup_name()}" th:href="@{'groupDdetail?id='+${item.getGroup_id()}}"> &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+                <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+                <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            </svg></a>
+
+            </li>
+
+            </li>
+            <ul style="margin-left:-33px">
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+                    <path d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-3zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0l2-2z"/>
+                </svg> &nbsp;&nbsp;
+                    <a href=""> <b>My writing </b> </a></li>
+            </ul>
+
+            <li><a href="list">IELTS Class 1 &ensp; <svg style="color:red" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
+                <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"/>
+                <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            </svg></a>
+
+            </li>
+            <li><a href="list">TOEFL Class 2</a></li>
+            <ul style="margin-left:-33px">
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                </svg> &nbsp;&nbsp;
+                    <a href="" th:href="@{/edituser}">Settings</a></li>
+            </ul>
+
+        </ul>
+    </nav>
+
+    <article>
+
+        <!-- New modal -->
+        <!--        <script>-->
+        <!--            window.onload=function ()-->
+        <!--            {-->
+        <!--                localStorage.setItem("id1","1");-->
+        <!--            }-->
+        <!--        </script>-->
+        <!--        <div id="simpleModal" class="modal" tabindex="-1" role="dialog" >-->
+        <!--            <div class="modal-dialog" role="document">-->
+        <!--                <div class="modal-content">-->
+        <!--                    <div class="modal-header">-->
+        <!--                        <h5 class="modal-title" style="font-size: 30px">Create New Group</h5>-->
+        <!--                        <button type="button" class="close" onclick="clear()" data-dismiss="modal" aria-label="Close">-->
+        <!--                            <span aria-hidden="true">&times;</span  >-->
+        <!--                        </button>-->
+        <!--                    </div>-->
+        <!--                    <div class="modal-body">-->
+        <!--                        <form action="createnewgroup" th:object="${groupdto}">-->
+        <!--                            <label style="margin-top: 10px;font-size: 20px" >Enter student group name:</label>-->
+        <!--                            <input class="form-control" style="margin-top: 10px" id="groupname2" type="text" placeholder="Groupname" th:field="*{groupname}" required>-->
+        <!--                            <label style="margin-top: 10px;font-size: 20px" >Enter student group pass:</label>-->
+        <!--                            <input class="form-control" style="margin-top: 10px" id="groupass2" type="password" placeholder="Grouppass" th:field="*{grouppass}">-->
+        <!--                            <label style="margin-top: 10px;font-size: 20px" >Notes:</label>-->
+        <!--                            <input class="form-control" style="margin-top: 10px" id="groupnote2" type="text" placeholder="Notes" th:field="*{notes}">-->
+        <!--                            <label style="margin-top: 10px;font-size: 20px" >Createdate:</label>-->
+        <!--                            <input id="datecreate" style="background-color: white;margin-top: 20px;margin-left: 30px"-->
+        <!--                                   type="date" th:field="*{datecreate}"-->
+        <!--                                   name="effective-date" minlength="1" maxlength="64" placeholder="dd-MM-yyyy" autocomplete="nope" required="required"></input>-->
+        <!--                            </br> <label style="margin-top: 10px;font-size: 20px" >Enddate:</label>-->
+        <!--                            <input id="dateend" style="background-color: white;margin-top: 20px;margin-left: 56px"-->
+        <!--                                   type="date" th:field="*{dateend}"-->
+        <!--                                   name="effective-date" minlength="1" maxlength="64" placeholder="dd-MM-yyyy" autocomplete="nope" required="required"></input>-->
+        <!--                            </br>-->
+        <!--                            <label id="thongbao"></label>-->
+        <!--                            <button type = "submit" id="btnsubmitcre" onclick="return createnewgroup()" class = "submit-btn" style="border: none;float: right;width: 80px;height: 50px;margin-top: 10px-->
+        <!--        ;background-color:  rgb(91,165,37);color: white">Create</button>-->
+        <!--                        </form>-->
+        <!--                    </div>-->
+
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <script type="text/javascript">-->
+        <!--            var groupname = document.getElementById('groupname2');-->
+        <!--            var grouppass = document.getElementById('groupass2');-->
+        <!--            var groupnote = document.getElementById('groupnote2');-->
+        <!--            $(document).ready(function(){-->
+        <!--                $("#simpleModal").on("hide.bs.modal", function(){-->
+        <!--                    groupname.value = "";-->
+        <!--                    groupnote.value = "";-->
+        <!--                    grouppass.value="";-->
+        <!--                    // your function after closing modal goes here-->
+        <!--                })-->
+        <!--            })-->
+        <!--            function createnewgroup(){-->
+        <!--                var datecreate = document.getElementById('datecreate').value;-->
+        <!--                var dateend = document.getElementById('dateend').value;-->
+        <!--                var label = document.getElementById('thongbao');-->
+        <!--                var groupname = document.getElementById('groupname2');-->
+        <!--                if(groupname.value!='')-->
+        <!--                {-->
+        <!--                    if(dateend<datecreate)-->
+        <!--                    {-->
+        <!--                        label.innerText="Enddate must after Startdate";-->
+        <!--                        label.style.color="red";-->
+        <!--                        return false;-->
+        <!--                    }-->
+        <!--                    else{-->
+        <!--                        return true;-->
+        <!--                    }-->
+        <!--                }-->
+        <!--                else{-->
+        <!--                    return false;-->
+        <!--                }-->
+
+        <!--            }-->
+        <!--            $(function () {-->
+        <!--                $("#myBtn").click(function () {-->
+        <!--                    $("#simpleModal").modal({ backdrop: "static", keyboard: false });-->
+        <!--                });-->
+        <!--            });-->
+        <!--        </script>-->
+        <script>
+            function getdulieu(){
+                var group_name = document.getElementById('groupname');
+                alert(group_name.value);
+            }
+
+        </script>
+        <!--              &lt;!&ndash; /.card-header &ndash;&gt;-->
+        <div class="container_group">
+
+            <div class="group_content" th:each="info : ${loadUser}" style="min-height: 40%;float: left;margin: 10px">
+                <table style="height: 50%; float:left;border: 1px solid #add38f;min-width: 300px" id="example2" >
+
+                    <div class="content-group" style="background-color: white">
+                        <tr >
+                            <td  th:text="*{info.getGroup_name()}" colspan="" style="color: #000000;text-align: center;font-weight:bold;font-size: 28px;box-shadow: 0px 1px 0px 0px #dcdcdc;">
+                            </td>
+                            <!--                    <td th:text="*{info.getTeachername()}"></td>-->
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <script>
+                                    window.onload= function (){
+                                        localStorage.setItem("id1","1");
+                                    }
+                                </script>
+                                <!--                      @{addnewmember/{id}(id=${info.getGroupid()})}-->
+                                <!--                      @{/addnewmember/{id}(id=${info.getGroupid()})}-->
+                                <center>
+                                    <a class="addnewstudent" th:href="*{info.getGroup_id()}">
+                                        <button class="btnaddnewstudent" value="Add new student" style="font-size:24px;border:none;width: 250px;height: 50px;font-weight: bold;background-color:#FFFFFF; color:#5BA525; margin: 15px 0px 5px 0px;
+                          ">
+                                            <!--                          <img src="dist/img/addnew.png" height="50" width="50"/>-->
+                                            <!--                          th:href="*{info.getGroupid()}"-->
+                                            <!--                          <img src="data:image/png;base64,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-->
+                                            <!--" style="width: 50px;height: 50px;margin-left: 30px;margin-right: 30px" alt="buttonadd"  border="0" />-->
+                                            <!--                                                <a href="profile.html">Add new student</a>-->
+                                            <svg  xmlns="http://www.w3.org/2000/svg" style="margin-top: -8px" color="#5BA525" width="30" height="30" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                            </svg>
+                                            Add new students</button>
+                                    </a>
+                                </center>
+                                <div class="container-content" th:each="item,stat : ${info.getMemberDTOS()}" style="margin:10px; height: 72px;">
+                                    <div class="content-left" style="float:left;width: 70px;height: 70px;">
+                                        <img style="float:left;width:70px;height: 70px" src="https://static.vecteezy.com/system/resources/thumbnails/000/350/111/small/Education__28193_29.jpg" alt="User Avatar">
+                                    </div>
+                                    <div class="content-center" style="float:left;width: 200px;height: 70px;background-color: #ffffff;">
+                                        <p style="margin-top:10px;font-weight: bold;font-size: 18px" th:text="*{item.getStudentname()}"></p>
+                                        <p class="text-sm" style="margin-top:-3px;font-size: 14px" th:text="*{item.getDatejoin()}"></p>
+                                    </div>
+                                    <div class="content-right" style="float:left;width: 70px;height: 70px;background-color: #FFFFFF;">
+
+                                        <button data-bs-toggle="modal" data-bs-target="#staticBackdrop1" onclick="getdata1(this.id)" th:id="${item.getMemberid()}" style="border: none;margin-top: 10px;margin-top: 30%;margin-left: 20%;background-color: #FFFFFF;">
+                                            <!--                        th:href="@{'deletemember?id='+ ${item.getMemberid()}}"-->
+                                            <i class="fa fa-times-circle" style="margin:-10px 0px 0px 10px;font-size:38px;color:red"></i>
+                                            <!--                        </button>-->
+                                        </button>
+                                        <div style="margin-top: 10%" class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel1" style="color: red">Notification</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearText()"></button>
+                                                    </div>
+                                                    <div class="modal-body" style="text-align: left">
+                                                        Do you want to delete this student ?
+                                                        <div class="deletebtn" style="float: right; margin-top: 30px">
+                                                            <button class="btnyesno" style="border:none; padding: 5px 10px 5px 10px; letter-spacing: 0.5px" onclick="pickyes()" id="btnyes">Yes</button> &nbsp;
+                                                            <button class="btnyesno" style="border:none; padding: 5px 10px 5px 10px; letter-spacing: 0.5px" onclick="picno()" id="btnno">No</button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        var radios = document.getElementsByName('fav_language');
+                                                        var btn = document.getElementById('btnsm');
+                                                        function getdata(){
+                                                            for (var i = 0, length = radios.length; i < length; i++) {
+                                                                if (radios[i].checked) {
+                                                                    location.href="getPageStudent?id="+radios[i].value;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" th:value="${item.getMemberid()}" th:id="${stat.index}">
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                        <tr style="display:flex;justify-content: center" >
+                            <td colspan="5">
+                                <script>
+                                    function editgroup(editgroup){
+                                        location.href='editgroup?id='+editgroup;
+                                    }
+                                </script>
+                                <button  class="button1" style="text-align: center;width: 250px;height: 50px;
+                        font-weight: bold;font-size: 24px;margin-bottom: 15px;background-color: #5BA525;border: none" onclick="editgroup(this.id)" th:id="${info.getGroup_id()}" >
+                                    <!--                                     th:href="@{'editgroup?id='+ ${info.getGroup_id()}}">-->
+                                    <a style="color: #FFFFFF;font-weight: 100;letter-spacing: 0.5px" class="btn1" >Edit</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="display:flex;justify-content: center">
+                            <td colspan="5">
+                                <button class="button1" style="text-align: center;width: 250px;height: 50px;
+                        font-weight: bold;font-size: 24px;margin-bottom: 15px;background-color: #5BA525;border: none" onclick="getdulieu()"><a style="color: #FFFFFF;font-weight: 100;letter-spacing: 0.5px" class="btn1">Copy</a> </button>
+                            </td>
+                        </tr>
+                        <tr style="display:flex;justify-content: center">
+                            <td colspan="5">
+                                <button class="button1" style="text-align: center;width: 250px;height: 50px;
+                        font-weight: bold;font-size: 24px;margin-bottom: 15px;background-color: #5BA525;border: none" >
+                                    <a style="color: #FFFFFF;font-weight: 100;letter-spacing: 0.5px" class="btn1">Activity</a> </button>
+                            </td>
+                        </tr>
+
+                    </div>
+
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- /.card-body -->
+
+        <!-- /.card -->
+        </div>
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        </div>
+
+    </article>
+</section>
+
+
+</body>
+
+</html>
+
